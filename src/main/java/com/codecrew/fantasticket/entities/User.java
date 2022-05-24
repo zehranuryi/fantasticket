@@ -1,4 +1,4 @@
-package com.codecrew.fantasticket.entities.users;
+package com.codecrew.fantasticket.entities;
 
 
 import com.codecrew.fantasticket.enums.UserType;

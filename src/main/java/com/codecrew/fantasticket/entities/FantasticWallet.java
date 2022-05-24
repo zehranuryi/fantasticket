@@ -1,7 +1,5 @@
 package com.codecrew.fantasticket.entities;
 
-import com.codecrew.fantasticket.entities.users.User;
-
 import javax.persistence.*;
 
 public class FantasticWallet {
