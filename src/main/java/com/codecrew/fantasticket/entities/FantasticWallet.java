@@ -1,6 +1,6 @@
 package com.codecrew.fantasticket.entities;
 
-import com.codecrew.fantasticket.entities.users.Customer;
+import com.codecrew.fantasticket.entities.users.User;
 
 import javax.persistence.*;
 
@@ -15,6 +15,6 @@ public class FantasticWallet {
     private  double balance;
 
     @OneToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name = "user_id")
+    private User customer;
 }
