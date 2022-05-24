@@ -24,7 +24,8 @@ public class Reservation {
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
-    @Column(name = "customer_id")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private int customerId;
 
     @Column(name = "event_type")
