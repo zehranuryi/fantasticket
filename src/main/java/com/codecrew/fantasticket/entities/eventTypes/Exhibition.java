@@ -20,6 +20,9 @@ public class Exhibition {
     @Column(name = "exhibition_id")
     private int id;
 
+    @Column(name = "exhibition_name")
+    private String exhibitionName;
+
     @Column(name = "artist_name")
     private String artistName;
 
