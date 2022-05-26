@@ -24,7 +24,6 @@ public class Reservation {
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
-    @OneToOne
     @JoinColumn(name = "user_id")
     private int customerId;
 

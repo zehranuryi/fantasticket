@@ -36,4 +36,6 @@ public class User {
         @NotBlank
         @Column(name = "password")
         private String password;
+
+
 }
