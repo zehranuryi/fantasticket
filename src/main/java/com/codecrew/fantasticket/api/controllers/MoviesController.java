@@ -8,6 +8,7 @@ import com.codecrew.fantasticket.entities.eventTypes.Movie;
 import com.codecrew.fantasticket.enums.City;
 import com.codecrew.fantasticket.enums.MovieCategory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -52,7 +53,7 @@ public class MoviesController {
     }
 
     @GetMapping("/getByDate")
-    public DataResult<List<Movie>> getByDate(@RequestParam LocalDate date) {
+    public DataResult<List<Movie>> getByDate(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return this.movieService.getByDate(date);
     }
 }

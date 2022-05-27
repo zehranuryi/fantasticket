@@ -1,6 +1,7 @@
 package com.codecrew.fantasticket.entities.eventTypes;
 
 import com.codecrew.fantasticket.enums.City;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,9 +24,6 @@ public class Exhibition {
     @Column(name = "exhibition_name")
     private String exhibitionName;
 
-    @Column(name = "artist_name")
-    private String artistName;
-
     @Column(name = "exhibition_description")
     private String exhibitionDescription;
 
@@ -36,9 +34,8 @@ public class Exhibition {
     private City city;
 
     @Column(name = "date")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date;
 
-    @Column(name = "time")
-    private LocalTime time;
 }
 

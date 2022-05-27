@@ -2,6 +2,7 @@ package com.codecrew.fantasticket.entities.eventTypes;
 
 import com.codecrew.fantasticket.enums.City;
 import com.codecrew.fantasticket.enums.MovieCategory;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,9 +36,11 @@ public class Movie {
     private City city;
 
     @Column(name = "date")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @Column(name = "time")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime time;
 
     @Column(name = "movie_category")

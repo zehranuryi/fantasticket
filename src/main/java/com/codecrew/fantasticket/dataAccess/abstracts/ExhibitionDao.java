@@ -11,7 +11,6 @@ public interface ExhibitionDao extends JpaRepository<Exhibition, Integer> {
 
     Exhibition getByExhibitionName(String exhibitionName);
 
-    List<Exhibition> getByArtistName(String artistName);
     List<Exhibition> getByDate(LocalDate date);
     List<Exhibition> getByCity(City city);
 }

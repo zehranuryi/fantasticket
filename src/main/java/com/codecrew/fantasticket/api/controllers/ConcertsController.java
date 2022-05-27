@@ -7,6 +7,7 @@ import com.codecrew.fantasticket.entities.eventTypes.Concert;
 import com.codecrew.fantasticket.enums.City;
 import com.codecrew.fantasticket.enums.MusicType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -39,6 +40,11 @@ public class ConcertsController {
         return this.concertService.add(concert);
     }
 
+    @GetMapping("/getByArtistName")
+    public DataResult<List<Concert>> getByArtistName(@RequestParam String artisName) {
+        return this.concertService.getByArtistName(artisName);
+    }
+
     @GetMapping("/getByMusicType")
     public DataResult<List<Concert>> getByMusicType(@RequestParam MusicType musicType) {
         return this.concertService.getByMusicType(musicType);
@@ -50,7 +56,7 @@ public class ConcertsController {
     }
 
     @GetMapping("/getByDate")
-    public DataResult<List<Concert>> getByDate(@RequestParam LocalDate date) {
+    public DataResult<List<Concert>> getByDate(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return this.concertService.getByDate(date);
     }
 }
