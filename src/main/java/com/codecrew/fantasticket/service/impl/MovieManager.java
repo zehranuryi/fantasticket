@@ -1,10 +1,10 @@
-package com.codecrew.fantasticket.business.concretes;
+package com.codecrew.fantasticket.service.impl;
 
-import com.codecrew.fantasticket.business.abstracts.MovieService;
-import com.codecrew.fantasticket.core.utilities.results.DataResult;
-import com.codecrew.fantasticket.core.utilities.results.SuccessDataResult;
-import com.codecrew.fantasticket.dataAccess.abstracts.MovieDao;
-import com.codecrew.fantasticket.entities.eventTypes.Movie;
+import com.codecrew.fantasticket.service.MovieService;
+import com.codecrew.fantasticket.exceptions.DataResult;
+import com.codecrew.fantasticket.exceptions.SuccessDataResult;
+import com.codecrew.fantasticket.dao.MovieDao;
+import com.codecrew.fantasticket.entity.eventTypes.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

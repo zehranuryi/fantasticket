@@ -14,7 +14,7 @@
 	<name>fantasticket</name>
 	<description>Project 3 for Software Project Management</description>
 	<properties>
-		<java.version>18</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
