@@ -1,23 +1,38 @@
 package com.codecrew.fantasticket.exceptions;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class Result {
-    private boolean success;
-    private Object data;
+public class Result<T extends Object> {
+    private Boolean success;
+    private T data;
     
-    public Result(boolean success,Object data) {
+    public Result(Boolean success, T data) {
+        this.success = success;
         this.data = data;
+    }
+    
+    public static Object response(Object data){
+        if(data == null) return new Result(false, new ArrayList<>());
+        if(data instanceof Collection) return new Result(true, data);
+        return new Result(true,  data);
+    }
+    
+    public Boolean getSuccess() {
+        return success;
+    }
+    
+    public void setSuccess(Boolean success) {
         this.success = success;
     }
     
-    public static Result response(Object data){
-        if(data == null) return new Result(false, Collections.emptyList());
-        if(data instanceof Collections) return new Result(true, data);
-        else return new Result(true, List.of(data));
+    public T getData() {
+        return data;
     }
-    public boolean isSuccess() {
-        return this.success;
+    
+    public void setData(T data) {
+        this.data = data;
     }
 }

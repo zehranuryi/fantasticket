@@ -1,10 +1,12 @@
 package com.codecrew.fantasticket.entity.base;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
+@MappedSuperclass
+@EntityListeners(value = AuditingEntityListener.class)
 public class BaseEntity implements Serializable {
 	private static final long serialVersionUID = -4463024877607502307L;
 	

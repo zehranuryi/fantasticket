@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "user")
+@Table(name = "users")
 public class User extends BaseEntity {
         
         @Column(name = "username", unique = true, nullable = false)
@@ -21,14 +19,14 @@ public class User extends BaseEntity {
         @Column(name = "email", unique = true, nullable = false)
         private String email;
         
-        @Column(name = "phone", unique = true, nullable = false)
+        @Column(name = "phone", nullable = false)
         private String phone;
         
         @Column(name = "address")
         private String address;
         
-        @Column(name = "fullname", nullable = false)
-        private String fullname;
+        @Column(name = "full_name", nullable = false)
+        private String fullName;
         
         @Column(name = "password", nullable = false)
         private String password;
@@ -73,11 +71,11 @@ public class User extends BaseEntity {
         }
         
         public String getFullname() {
-                return fullname;
+                return fullName;
         }
         
         public void setFullname(String fullname) {
-                this.fullname = fullname;
+                this.fullName = fullname;
         }
         
         public String getPassword() {

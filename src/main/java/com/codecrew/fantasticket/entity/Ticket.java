@@ -16,6 +16,9 @@ public class Ticket extends BaseEntity {
 	@Column(name = "seat_number", nullable = false)
 	private Integer seatNumber;
 	
+	@Column(name = "is_cancelled", nullable = false)
+	private Boolean isCancelled;
+	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "event_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -48,5 +51,13 @@ public class Ticket extends BaseEntity {
 	
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Boolean getCancelled() {
+		return isCancelled;
+	}
+	
+	public void setCancelled(Boolean cancelled) {
+		isCancelled = cancelled;
 	}
 }

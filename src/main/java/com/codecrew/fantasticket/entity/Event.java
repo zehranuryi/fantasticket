@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Event extends BaseEntity {
+	
 	@Column(name = "event_name", nullable = false)
 	@JsonProperty(value = "eventName")
 	@NotEmpty
@@ -73,6 +74,10 @@ public class Event extends BaseEntity {
 	@JsonProperty(value = "hasSeatPlan")
 	@NotNull
 	private Boolean hasSeatPlan;
+	
+	@Column(name = "is_cancelled", nullable = false)
+	@JsonProperty(value = "isCancelled")
+	private Boolean cancelled;
 	
 	public String getEventName() {
 		return eventName;
@@ -160,5 +165,13 @@ public class Event extends BaseEntity {
 	
 	public void setSubType(EventSubType subType) {
 		this.subType = subType;
+	}
+	
+	public Boolean getCancelled() {
+		return cancelled;
+	}
+	
+	public void setCancelled(Boolean cancelled) {
+		this.cancelled = cancelled;
 	}
 }
