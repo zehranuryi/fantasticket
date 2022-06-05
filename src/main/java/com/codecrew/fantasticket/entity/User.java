@@ -11,6 +11,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
 public class User extends BaseEntity {
         
         @Column(name = "username", unique = true, nullable = false)
@@ -37,6 +39,9 @@ public class User extends BaseEntity {
         
         @Column(name = "active", nullable = false)
         private Boolean active;
+        
+        @Transient
+        private String token;
         
         public String getUsername() {
                 return username;
@@ -100,5 +105,21 @@ public class User extends BaseEntity {
         
         public void setActive(Boolean active) {
                 this.active = active;
+        }
+        
+        public String getFullName() {
+                return fullName;
+        }
+        
+        public void setFullName(String fullName) {
+                this.fullName = fullName;
+        }
+        
+        public String getToken() {
+                return token;
+        }
+        
+        public void setToken(String token) {
+                this.token = token;
         }
 }

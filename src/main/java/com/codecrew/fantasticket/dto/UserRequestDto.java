@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 
 public class UserRequestDto {
+	
 	@JsonProperty(value = "username")
 	@NotEmpty
 	private String username;
@@ -80,4 +81,5 @@ public class UserRequestDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 }

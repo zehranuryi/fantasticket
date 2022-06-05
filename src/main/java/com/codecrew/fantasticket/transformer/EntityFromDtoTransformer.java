@@ -10,6 +10,14 @@ import org.springframework.stereotype.Service;
 public class EntityFromDtoTransformer {
 	
 	public User userFromDto(UserRequestDto userRequestDto){
-		return null;
+		return new User(userRequestDto.getUsername(),
+				userRequestDto.getEmail(),
+				userRequestDto.getPhone(),
+				userRequestDto.getAddress(),
+				userRequestDto.getFullName(),
+				userRequestDto.getPassword(),
+				null,
+				null,
+				null);
 	}
 }

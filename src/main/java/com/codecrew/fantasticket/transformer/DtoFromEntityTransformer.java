@@ -18,6 +18,12 @@ public class DtoFromEntityTransformer {
 	}
 	
 	public UserResponseDto userDtoFromEntity(User user){
-		return null;
+		return new UserResponseDto(user.getUsername(),
+				user.getEmail(),
+				user.getPhone(),
+				user.getAddress(),
+				user.getFullName(),
+				user.getRole(),
+				user.getToken());
 	}
 }
