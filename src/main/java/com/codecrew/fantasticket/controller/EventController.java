@@ -35,6 +35,11 @@ public class EventController extends BaseController {
 	public ResponseEntity<Result<List<Event>>> getAllByEventSubType(@PathVariable EventSubType eventType){
 		return new ResponseEntity(Result.response(eventService.getAllBySubType(eventType)), HttpStatus.OK);
 	}
+
+	@GetMapping(value = "/place/{place}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Result<List<Event>>> getAllByPlace(@PathVariable String place){
+		return new ResponseEntity(Result.response(eventService.getAllByPlace(place)), HttpStatus.OK);
+	}
 	
 	@GetMapping(value = "/{eventId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Result<Event>> getOne(@PathVariable Integer eventId){

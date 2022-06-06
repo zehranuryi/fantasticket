@@ -41,6 +41,16 @@ public class UserServiceImpl implements UserService {
 			return dtoFromEntityTransformer.userDtoFromEntity(user);
 		}).collect(Collectors.toList());
 	}
+
+	@Override
+	public User getOneById(Integer id){
+		return userRepository.findById(id).orElseThrow(); // TODO THROW RESOURCE
+	}
+
+	@Override
+	public UserResponseDto getOneByIdDto(Integer id){
+		return dtoFromEntityTransformer.userDtoFromEntity(getOneById(id)); // TODO THROW RESOURCE
+	}
 	
 	@Override
 	public User findByUsername(String username){

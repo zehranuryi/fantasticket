@@ -23,4 +23,10 @@ public class TicketDto {
 	
 	@JsonProperty(value = "seatNumber")
 	private Integer seatNumber;
+
+	@JsonProperty(value = "ticketCount")
+	private Integer ticketCount;
+
+	@JsonProperty(value = "totalAmount")
+	private Double totalAmount;
 }

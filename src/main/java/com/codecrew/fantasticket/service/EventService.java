@@ -14,6 +14,8 @@ public interface EventService {
 	List<Event> getAllByType(EventType eventType);
 	
 	List<Event> getAllBySubType(EventSubType subType);
+
+	List<Event> getAllByPlace(String place);
 	
 	Event saveEvent(Event event);
 	
@@ -24,4 +26,5 @@ public interface EventService {
 	Event changePrice(Integer eventId, Double newPrice);
 	
 	void deleteEvent(Integer id);
+
 }

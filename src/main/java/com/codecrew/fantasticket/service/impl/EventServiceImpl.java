@@ -77,6 +77,11 @@ public class EventServiceImpl implements EventService {
 	public void deleteEvent(Integer id){
 		eventRepository.deleteById(id);
 	}
+
+	@Override
+	public List<Event> getAllByPlace(String place) {
+		return eventRepository.findByPlace(place);
+	}
 	
 	// TODO GET TICKETS THAT HAS THE EVENT
 }

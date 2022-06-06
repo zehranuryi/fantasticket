@@ -23,4 +23,8 @@ public interface UserService {
 	
 	@Transient
 	UserResponseDto changeRole(Integer userId, Role role);
+
+	UserResponseDto getOneByIdDto(Integer id);
+	
+	User getOneById(Integer id);
 }

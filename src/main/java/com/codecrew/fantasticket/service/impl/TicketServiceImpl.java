@@ -5,6 +5,7 @@ import com.codecrew.fantasticket.dto.TicketDto;
 import com.codecrew.fantasticket.entity.Ticket;
 import com.codecrew.fantasticket.service.EventService;
 import com.codecrew.fantasticket.service.TicketService;
+import com.codecrew.fantasticket.service.UserService;
 import com.codecrew.fantasticket.transformer.DtoFromEntityTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class TicketServiceImpl implements TicketService {
 	
 	@Autowired
 	private EventService eventService;
+
+	@Autowired
+	private UserService userService;
 	
 	@Override
 	public List<TicketDto> getAll(){
@@ -41,7 +45,9 @@ public class TicketServiceImpl implements TicketService {
 		var ticket = new Ticket(ticketDto.getSeatNumber(),
 				ticketDto.getCancelled(),
 				eventService.getOne(ticketDto.getEventId()),
-				null); // TODO: ADD USER SERVICE GET ONE
+				userService.getOneById(ticketDto.getUserId()),
+				ticketDto.getTicketCount(),
+				ticketDto.getTotalAmount()); // TODO: ADD USER SERVICE GET ONE
 		return dtoFromEntityTransformer.ticketDtoFromEntity(ticketRepository.save(ticket));
 	}
 	
