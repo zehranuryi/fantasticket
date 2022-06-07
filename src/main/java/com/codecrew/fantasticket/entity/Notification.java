@@ -69,5 +69,4 @@ public class Notification extends BaseEntity {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
-
 }
