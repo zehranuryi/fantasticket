@@ -37,6 +37,9 @@ public class Notification extends BaseEntity {
     @JsonProperty(value = "date")
     @NotNull
     private LocalDateTime date;
+    
+    @ManyToMany(mappedBy = "notifications")
+    Set<User> users;
 
     public String getIcon() {
         return icon;
@@ -68,5 +71,13 @@ public class Notification extends BaseEntity {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+    
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
