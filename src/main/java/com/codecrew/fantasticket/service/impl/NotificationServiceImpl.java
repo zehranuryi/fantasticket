@@ -4,9 +4,11 @@ import com.codecrew.fantasticket.dao.NotificationRepository;
 import com.codecrew.fantasticket.entity.Notification;
 import com.codecrew.fantasticket.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class NotificationServiceImpl implements NotificationService {
 
     @Autowired
@@ -14,7 +16,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public Notification createNotification(Notification notification) {
-        return null;
+        return notificationRepository.save(notification);
     }
 
     @Override

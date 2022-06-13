@@ -1,5 +1,6 @@
 package com.codecrew.fantasticket.service;
 
+import com.codecrew.fantasticket.dto.ImageRequestDto;
 import com.codecrew.fantasticket.entity.Event;
 import com.codecrew.fantasticket.enums.EventSubType;
 import com.codecrew.fantasticket.enums.EventType;
@@ -18,6 +19,10 @@ public interface EventService {
 	List<Event> getAllByPlace(String place);
 	
 	Event saveEvent(Event event);
+	
+	Event addImage(ImageRequestDto imageRequestDto);
+	
+	Event addSelledSeats(int[] seats, Integer id);
 	
 	Event updateEvent(Event event, Integer id);
 	

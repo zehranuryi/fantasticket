@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "event")
@@ -78,6 +79,10 @@ public class Event extends BaseEntity {
 	@Column(name = "is_cancelled", nullable = false)
 	@JsonProperty(value = "isCancelled")
 	private Boolean cancelled;
+	
+	@Column(name = "selled_seats", nullable = true)
+	@JsonProperty(value = "selledSeats")
+	private int[] selledSeats;
 	
 	public String getEventName() {
 		return eventName;
@@ -173,5 +178,13 @@ public class Event extends BaseEntity {
 	
 	public void setCancelled(Boolean cancelled) {
 		this.cancelled = cancelled;
+	}
+	
+	public int[] getSelledSeats() {
+		return selledSeats;
+	}
+	
+	public void setSelledSeats(int[] selledSeats) {
+		this.selledSeats = selledSeats;
 	}
 }

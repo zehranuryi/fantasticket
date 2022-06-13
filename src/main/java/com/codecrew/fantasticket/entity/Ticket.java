@@ -7,16 +7,17 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ticket")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ticket extends BaseEntity {
-	@Column(name = "seat_number", nullable = false)
-	private Integer seatNumber;
+	@Column(name = "seat_numbers", nullable = true)
+	private String[] seatNumbers;
 	
-	@Column(name = "cancelled", nullable = false)
+	@Column(name = "cancelled", nullable = true)
 	private Boolean cancelled;
 	
 	@ManyToOne(optional = false)
@@ -35,12 +36,12 @@ public class Ticket extends BaseEntity {
 	@Column(name = "total_amount", nullable = false)
 	private Double totalAmount;
 	
-	public Integer getSeatNumber() {
-		return seatNumber;
+	public String[] getSeatNumbers() {
+		return seatNumbers;
 	}
 	
-	public void setSeatNumber(Integer seatNumber) {
-		this.seatNumber = seatNumber;
+	public void setSeatNumbers(String[] seatNumbers) {
+		this.seatNumbers = seatNumbers;
 	}
 	
 	public Event getEvent() {

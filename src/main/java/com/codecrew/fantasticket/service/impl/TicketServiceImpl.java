@@ -7,7 +7,9 @@ import com.codecrew.fantasticket.service.EventService;
 import com.codecrew.fantasticket.service.TicketService;
 import com.codecrew.fantasticket.service.UserService;
 import com.codecrew.fantasticket.transformer.DtoFromEntityTransformer;
+import com.codecrew.fantasticket.util.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,10 +44,12 @@ public class TicketServiceImpl implements TicketService {
 	
 	@Override
 	public TicketDto saveTicket(TicketDto ticketDto){
-		var ticket = new Ticket(ticketDto.getSeatNumber(),
+		if(ticketDto.getCancelled() == null) ticketDto.setCancelled(false);
+		Integer userId = ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getId();
+		var ticket = new Ticket(ticketDto.getSeatNumbers(),
 				ticketDto.getCancelled(),
 				eventService.getOne(ticketDto.getEventId()),
-				userService.getOneById(ticketDto.getUserId()),
+				userService.getOneById(userId),
 				ticketDto.getTicketCount(),
 				ticketDto.getTotalAmount()); // TODO: ADD USER SERVICE GET ONE
 		return dtoFromEntityTransformer.ticketDtoFromEntity(ticketRepository.save(ticket));
@@ -62,11 +66,16 @@ public class TicketServiceImpl implements TicketService {
 	
 	@Override
 	public List<TicketDto> getAllTicketsForEvent(Integer eventId){
-		return ticketRepository.findByEventId(eventId)
+		return getTicketsByEvent(eventId)
 				.stream()
 				.map(ticket -> {
 					return dtoFromEntityTransformer.ticketDtoFromEntity(ticket);
 				}).collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<Ticket> getTicketsByEvent(Integer eventId){
+		return ticketRepository.findByEventId(eventId);
 	}
 	
 	@Override

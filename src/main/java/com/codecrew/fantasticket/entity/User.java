@@ -4,7 +4,6 @@ package com.codecrew.fantasticket.entity;
 import com.codecrew.fantasticket.entity.base.BaseEntity;
 import com.codecrew.fantasticket.enums.Role;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -42,10 +41,6 @@ public class User extends BaseEntity {
         
         @Transient
         private String token;
-        
-        @ManyToMany
-        @JoinTable(name = "notification_user", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "id"))
-        List<Notification> notifications;
         
         public String getUsername() {
                 return username;
@@ -125,13 +120,5 @@ public class User extends BaseEntity {
         
         public void setToken(String token) {
                 this.token = token;
-        }
-        
-        public List<Notification> getNotifications() {
-                return notifications;
-        }
-
-        public void setNotifications(List<Notification> notifications) {
-                this.notifications = notifications;
         }
 }

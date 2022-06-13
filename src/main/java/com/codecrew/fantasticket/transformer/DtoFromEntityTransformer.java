@@ -14,7 +14,7 @@ public class DtoFromEntityTransformer {
 				ticket.getUser().getId(),
 				ticket.getEvent().getId(),
 				ticket.getCancelled(),
-				ticket.getSeatNumber(),
+				ticket.getSeatNumbers(),
 				ticket.getTicketCount(),
 				ticket.getTotalAmount());
 	}

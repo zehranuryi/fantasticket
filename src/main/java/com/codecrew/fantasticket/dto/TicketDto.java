@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -22,7 +24,7 @@ public class TicketDto {
 	private Boolean cancelled;
 	
 	@JsonProperty(value = "seatNumber")
-	private Integer seatNumber;
+	private String[] seatNumbers;
 
 	@JsonProperty(value = "ticketCount")
 	private Integer ticketCount;

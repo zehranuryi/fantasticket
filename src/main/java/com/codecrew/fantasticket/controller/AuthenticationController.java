@@ -11,7 +11,6 @@ import com.codecrew.fantasticket.util.RestTarget;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +35,11 @@ public class AuthenticationController extends BaseController {
 		try {
 			var user= userService.findByUsername(userRequestDto.getUsername());
 			if(user != null)
-			return new ResponseEntity(Result.response(userRequestDto.getUsername() + "kullanıcı adına ait bir hesap zaten var.") ,HttpStatus.CONFLICT);
+			return new ResponseEntity(Result.response("A user already exists with username, "+ userRequestDto.getUsername()) ,HttpStatus.CONFLICT);
+			
+			user = userService.findByEmail(userRequestDto.getEmail());
+			if(user != null)
+				return new ResponseEntity(Result.response("An account already using email address "+ userRequestDto.getEmail()) ,HttpStatus.CONFLICT);
 		}catch (Exception exception){}
 		
 		return new ResponseEntity(Result.response(userService.signInUserReturnDto(userRequestDto)), HttpStatus.CREATED);

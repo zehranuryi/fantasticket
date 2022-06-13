@@ -1,6 +1,8 @@
 package com.codecrew.fantasticket.controller;
 
 import com.codecrew.fantasticket.controller.base.BaseController;
+import com.codecrew.fantasticket.dto.ImageRequestDto;
+import com.codecrew.fantasticket.dto.SeatsDto;
 import com.codecrew.fantasticket.entity.Event;
 import com.codecrew.fantasticket.enums.EventSubType;
 import com.codecrew.fantasticket.enums.EventType;
@@ -27,13 +29,13 @@ public class EventController extends BaseController {
 	}
 	
 	@GetMapping(value = "/event-type/{eventType}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Result<List<Event>>> getAllByEvent(@PathVariable EventType eventType){
+	public ResponseEntity<Result<List<Event>>> getAllByEvent(@PathVariable("eventType") EventType eventType){ //
 		return new ResponseEntity(Result.response(eventService.getAllByType(eventType)), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/event-type/{eventSubType}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Result<List<Event>>> getAllByEventSubType(@PathVariable EventSubType eventType){
-		return new ResponseEntity(Result.response(eventService.getAllBySubType(eventType)), HttpStatus.OK);
+	@GetMapping(value = "/event-sub-type/{subType}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Result<List<Event>>> getAllByEventSubType(@PathVariable("subType") EventSubType subType){
+		return new ResponseEntity(Result.response(eventService.getAllBySubType(subType)), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/place/{place}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,9 +53,24 @@ public class EventController extends BaseController {
 		return new ResponseEntity(Result.response(eventService.saveEvent(event)), HttpStatus.CREATED);
 	}
 	
+	@PostMapping("/image")
+	public ResponseEntity<Result<Event>> addImage(@RequestBody ImageRequestDto imageRequestDto){
+		return new ResponseEntity(Result.response(eventService.addImage(imageRequestDto)), HttpStatus.CREATED);
+	}
+	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Result<Event>> update(@RequestBody Event event, @PathVariable Integer id){
 		return new ResponseEntity(Result.response(eventService.updateEvent(event, id)), HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/add-seats/{id}")
+	public ResponseEntity<Result<Event>> addSeats(@RequestBody SeatsDto seatsDto, @PathVariable Integer id){
+		return new ResponseEntity(Result.response(eventService.addSelledSeats(seatsDto.getSeats(), id)), HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/cancelEvent/{eventId}")
+	public ResponseEntity<Result<Event>> cancelEvent(@PathVariable Integer eventId){
+		return new ResponseEntity(Result.response(eventService.cancelEvent(eventId)), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/{id}")

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -45,7 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors();
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		
+		http.authorizeRequests()
+				.antMatchers(HttpMethod.PUT, "/api/**").permitAll()
+				.anyRequest().permitAll();
 //		http.authorizeRequests()
 //				.antMatchers("/api/authentication/**").permitAll()
 //				.antMatchers(HttpMethod.POST, "/api/authentication/**").permitAll()
