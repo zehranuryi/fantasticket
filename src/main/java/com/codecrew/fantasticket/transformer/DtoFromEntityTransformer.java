@@ -1,7 +1,9 @@
 package com.codecrew.fantasticket.transformer;
 
+import com.codecrew.fantasticket.dto.NotificationDto;
 import com.codecrew.fantasticket.dto.TicketDto;
 import com.codecrew.fantasticket.dto.UserResponseDto;
+import com.codecrew.fantasticket.entity.Notification;
 import com.codecrew.fantasticket.entity.Ticket;
 import com.codecrew.fantasticket.entity.User;
 import org.springframework.stereotype.Service;
@@ -27,5 +29,12 @@ public class DtoFromEntityTransformer {
 				user.getFullName(),
 				user.getRole(),
 				user.getToken());
+	}
+	
+	public NotificationDto notificationDtoFromEntity(Notification notification){
+		return new NotificationDto(notification.getTitle(),
+				notification.getMessage(),
+				notification.getDate(),
+				notification.getUser().getId());
 	}
 }

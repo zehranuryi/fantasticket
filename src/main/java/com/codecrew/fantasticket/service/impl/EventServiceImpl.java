@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -145,6 +147,17 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public List<Event> getAllByPlace(String place) {
 		return eventRepository.findByPlace(place);
+	}
+	
+	@Override
+	public List<Event> getAllByDate(LocalDate date){
+		return eventRepository.findAll()
+				.stream()
+				.filter(event -> {
+					LocalDate eventDate = event.getDate().toLocalDate();
+					
+					return date.equals(eventDate);
+				}).collect(Collectors.toList());
 	}
 	
 	// TODO GET TICKETS THAT HAS THE EVENT

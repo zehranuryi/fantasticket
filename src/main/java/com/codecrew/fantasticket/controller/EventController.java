@@ -10,11 +10,13 @@ import com.codecrew.fantasticket.exceptions.Result;
 import com.codecrew.fantasticket.service.EventService;
 import com.codecrew.fantasticket.util.RestTarget;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -43,6 +45,11 @@ public class EventController extends BaseController {
 		return new ResponseEntity(Result.response(eventService.getAllByPlace(place)), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/date/{date}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Result<List<Event>>> getAllByPlace(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
+		return new ResponseEntity(Result.response(eventService.getAllByDate(date)), HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/{eventId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Result<Event>> getOne(@PathVariable Integer eventId){
 		return new ResponseEntity(Result.response(eventService.getOne(eventId)), HttpStatus.OK);
@@ -68,7 +75,7 @@ public class EventController extends BaseController {
 		return new ResponseEntity(Result.response(eventService.addSelledSeats(seatsDto.getSeats(), id)), HttpStatus.OK);
 	}
 	
-	@PutMapping(value = "/cancelEvent/{eventId}")
+	@PutMapping(value = "/cancel-event/{eventId}")
 	public ResponseEntity<Result<Event>> cancelEvent(@PathVariable Integer eventId){
 		return new ResponseEntity(Result.response(eventService.cancelEvent(eventId)), HttpStatus.OK);
 	}

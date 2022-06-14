@@ -36,6 +36,7 @@ public class Ticket extends BaseEntity {
 	@Column(name = "total_amount", nullable = false)
 	private Double totalAmount;
 	
+	
 	public String[] getSeatNumbers() {
 		return seatNumbers;
 	}

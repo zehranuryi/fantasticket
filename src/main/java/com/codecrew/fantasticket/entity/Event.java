@@ -77,7 +77,7 @@ public class Event extends BaseEntity {
 	private Boolean hasSeatPlan;
 	
 	@Column(name = "is_cancelled", nullable = false)
-	@JsonProperty(value = "isCancelled")
+	@JsonProperty(value = "cancelled")
 	private Boolean cancelled;
 	
 	@Column(name = "selled_seats", nullable = true)

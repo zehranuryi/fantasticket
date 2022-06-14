@@ -6,4 +6,5 @@ public class RestTarget {
 	public final static String TICKET = "/ticket";
 	public final static String AUTHENTICATION = "/authentication";
 	public final static String USER = "/user";
+	public final static String NOTIFICATION = "/notification";
 }

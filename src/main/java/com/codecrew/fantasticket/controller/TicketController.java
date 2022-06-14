@@ -5,9 +5,11 @@ import com.codecrew.fantasticket.dto.TicketDto;
 import com.codecrew.fantasticket.exceptions.Result;
 import com.codecrew.fantasticket.service.TicketService;
 import com.codecrew.fantasticket.util.RestTarget;
+import com.codecrew.fantasticket.util.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +20,14 @@ public class TicketController extends BaseController {
 	@Autowired
 	private TicketService ticketService;
 	
-	@GetMapping(path = "/by-user-id/{userId}")
-	public ResponseEntity<Result<List<TicketDto>>> getListsByUserId(@PathVariable Integer userId){
+	@GetMapping(path = "/by-user-id")
+	public ResponseEntity<Result<List<TicketDto>>> getListsByUserId(){
+		Integer userId = ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getId();
+		
 		return new ResponseEntity(Result.response(ticketService.getAllTicketsForUser(userId)), HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "/by-event-id/{userId}")
+	@GetMapping(path = "/by-event-id/{eventId}")
 	public ResponseEntity<Result<List<TicketDto>>> getListsByEventId(@PathVariable Integer eventId){
 		return new ResponseEntity(Result.response(ticketService.getAllTicketsForEvent(eventId)), HttpStatus.OK);
 	}
@@ -33,7 +37,7 @@ public class TicketController extends BaseController {
 		return new ResponseEntity(Result.response(ticketService.saveTicket(ticketDto)), HttpStatus.CREATED);
 	}
 	
-	@PutMapping(value = "/{ticketId}")
+	@PutMapping(value = "/cancel-ticket/{ticketId}")
 	public ResponseEntity<Result<TicketDto>> cancelTicket(@PathVariable Integer ticketId){
 		return new ResponseEntity(Result.response(ticketService.cancelTicket(ticketId)), HttpStatus.OK);
 	}

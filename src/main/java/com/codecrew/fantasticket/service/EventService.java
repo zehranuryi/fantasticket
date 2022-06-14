@@ -5,6 +5,7 @@ import com.codecrew.fantasticket.entity.Event;
 import com.codecrew.fantasticket.enums.EventSubType;
 import com.codecrew.fantasticket.enums.EventType;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface EventService {
@@ -31,5 +32,6 @@ public interface EventService {
 	Event changePrice(Integer eventId, Double newPrice);
 	
 	void deleteEvent(Integer id);
-
+	
+	List<Event> getAllByDate(LocalDate date);
 }
